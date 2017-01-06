@@ -22,6 +22,13 @@ public class ServiziControl extends HttpServlet {
 		HttpSession session = request.getSession();
 		try {
 			if(action.equalsIgnoreCase("preventivo")){
+				Preventivo preventivo = new Preventivo();
+				preventivo.setNome(request.getParameter("nome"));
+				preventivo.setCognome(request.getParameter("cognome"));
+				preventivo.setCodiceFiscale(request.getParameter("codicefiscale"));
+				preventivo.setIndirizzo(request.getParameter("indirizzo"));
+				preventivo.setEmail(request.getParameter("email"));
+				preventivo.setContattoTelefonico(request.getParameter("contattotelefonico"));
 				String nome = request.getParameter("nome");
 				String cognome = request.getParameter("cognome");
 				String codiceFiscale = request.getParameter("codicefiscale");
@@ -32,6 +39,14 @@ public class ServiziControl extends HttpServlet {
 				
 			}
 			else if (action.equalsIgnoreCase("noleggio")){
+				Noleggio noleggio = new Noleggio();
+				noleggio.setNome(request.getParameter("nome"));
+				noleggio.setCognome(request.getParameter("cognome"));
+				noleggio.setCodiceFiscale(request.getParameter("codicefiscale"));
+				noleggio.setDataInizio(request.getParameter("datainizio"));
+				noleggio.setDataFine(request.getParameter("datafine"));
+				noleggio.setEmail(request.getParameter("email"));
+				noleggio.setContattoTelefonico(request.getParameter("contattotelefonico"));
 				String nome = request.getParameter("nome");
 				String cognome = request.getParameter("cognome");
 				String codiceFiscale = request.getParameter("codicefiscale");
@@ -39,25 +54,37 @@ public class ServiziControl extends HttpServlet {
 				Date datafine = request.getParameter("datafine");
 				String email = request.getParameter("email");
 				String contattotelefonico = request.getParameter("contattotelefonico");
-				model.Noleggio(noleggio);
+				model.doSave(noleggio);
 			}
 			
 			else if (action.equalsIgnoreCase("testdrive")){
+				TestDrive test = new TestDrive();
+				test.setNome(request.getParameter("nome"));
+				test.setCognome(request.getParameter("cognome"));
+				test.setCodiceFiscale(request.getParameter("codicefiscale"));
+				test.setDataInizio(request.getParameter("datainizio"));
+				test.setEmail(request.getParameter("email"));
+				test.setContattoTelefonico(request.getParameter("contattotelefonico"));
 				String nome = request.getParameter("nome");
 				String cognome = request.getParameter("cognome");
 				String codiceFiscale = request.getParameter("codicefiscale");
 				Date datainizio = request.getParameter("datainizio");
 				String email = request.getParameter("email");
 				String contattotelefonico = request.getParameter("contattotelefonico");
-				model.TestDrive(test);
+				model.doSave(test);
 			}
 			
 			else if (action.equalsIgnoreCase("newsletter")){
+				Newsletter news = new Newsletter();
+				news.setNome(request.getParameter("nome"));
+				news.setCognome(request.getParameter("cognome"));
+				news.setEmail(request.getParameter("email"));
+				news.setContattoTelefonico(request.getParameter("contattotelefonico"))
 				String nome = request.getParameter("nome");
 				String cognome = request.getParameter("cognome");
 				String email = request.getParameter("email");
 				String contattotelefonico = request.getParameter("contattotelefonico");
-				model.Newsletter(news);
+				model.doSave(news);
 			}
 			
 			
