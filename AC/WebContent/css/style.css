@@ -1,0 +1,111 @@
+body{
+	font-family: Muli, sans-serif!important;
+}
+
+.colored-bg{
+	background-color: lavender;
+}
+
+.bg-white{
+	background-color: white;
+}
+
+header{
+	border-bottom: 1px solid lightgray;
+
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+.gradient{
+	height: 750px;
+	background: rgba(81,148,219,1);
+	background: -moz-linear-gradient(top, rgba(81,148,219,1) 0%, rgba(154,205,252,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(81,148,219,1)), color-stop(100%, rgba(154,205,252,1)));
+	background: -webkit-linear-gradient(top, rgba(81,148,219,1) 0%, rgba(154,205,252,1) 100%);
+	background: -o-linear-gradient(top, rgba(81,148,219,1) 0%, rgba(154,205,252,1) 100%);
+	background: -ms-linear-gradient(top, rgba(81,148,219,1) 0%, rgba(154,205,252,1) 100%);
+	background: linear-gradient(to bottom, rgba(81,148,219,1) 0%, rgba(154,205,252,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5194db', endColorstr='#9acdfc', GradientType=0 );
+
+}
+
+.auto{
+	float: left;
+}
+
+.fotoAuto{
+	float: left;
+	width: 545px;
+	margin-right: 10px;
+}
+
+.descrizioneAuto{
+	float: left;
+	font-family: 'Muli', sans-serif;
+	width: 545px;
+	max-height: 287px;
+	overflow: hidden;
+	text-align: justify;
+	line-height: 30px;
+	margin-top: 10px;
+}
+
+.testata{
+	margin-top: 10px;
+	width: 545px;
+    float: left;
+    position: relative;
+}
+
+.testata h2{
+	max-width: 430px;
+}
+
+.pulsanteAcquista{
+	position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.accessori{
+	float: left;
+	width: 545px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.optional{
+	float: left;
+	width: 555px;
+	margin-top: 10px;
+}
+
+.preventivo{
+	float: left;
+	margin-top: 10px;
+	width: 100%;
+}
+
+.preventivo input{
+	width: 50%;
+}
+
+.custom-checkbox{
+	width: 100%;
+}
+
+.custom-control + .custom-control{
+	margin-left: 0;
+}
+
+.servizi{
+	width: 100%;
+	float: left;
+	margin-top: 10px;
+}

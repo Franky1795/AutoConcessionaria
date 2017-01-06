@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" >
+	<link type="text/css" rel="stylesheet" href="./css/style.css" >
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Auto Concessionaria</title>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="./javascript/bootstrap.js"></script>
+	<script src="./javascript/bootstrap.min.js"></script>
+	<header class="header">
+		<div class="container">
+			<nav class="navbar navbar-light float-xs-left" style="padding-left: 0 !important">
+			  <ul class="nav navbar-nav">
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">elenco Auto</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">contatti</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">chi siamo</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="#">dove siamo</a>
+			    </li>
+			    <li class="nav-item">
+			    	<a class="nav-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ricerca</a>
+			    </li>
+			  </ul>
+			</nav>
+			<div class="collapse float-xs-left" id="collapseExample" style="margin-top: 0.5rem">
+			  	<form class="form-inline float-xs-left">
+			      <input class="form-control" type="text" placeholder="Nome Auto">
+			      <button class="btn btn-sm btn-outline-secondary" type="submit">Cerca</button>
+			    </form>			
+			</div>
+			<button type="button" class="float-xs-right btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-sm" style="margin-top: 0.5rem">Login Amministrazione</button>
+			<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-sm">
+			    <div class="modal-content">
+			      ...
+			    </div>
+			  </div>
+			</div>
+	</header>
+	<content>
+		<div class="container" style="padding-top: 1rem; padding-bottom: 50px;">
+			<div class="auto">
+			
+				<img src="./images/car.jpg" class="fotoAuto">
+				<div class="testata">
+					<h2 class="float-xs-left">Alfa Romeo Giulietta</h2>
+					<button type="button" class="float-xs-right btn btn-success align-middle pulsanteAcquista">Acquista</button>
+				</div>
+				
+				<p class="descrizioneAuto">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua.</p>
+
+			</div>
+			<div class="accessori">
+				<h3 style="border-bottom: 1px solid #0275d8">Accessori</h3>
+				<ul>
+					<li>Vetri Elettrici</li>
+					<li>Climatizzatore</li>
+				</ul>
+			</div>
+			<div class="optional">
+				<h3 style="border-bottom: 1px solid #0275d8">Optional</h3>
+				<label class="custom-control custom-checkbox">
+				  <input type="checkbox" class="custom-control-input">
+				  <span class="custom-control-indicator"></span>
+				  <span class="custom-control-description">Radio</span>
+				</label>
+				<label class="custom-control custom-checkbox">
+				  <input type="checkbox" class="custom-control-input">
+				  <span class="custom-control-indicator"></span>
+				  <span class="custom-control-description">Comandi al volante</span>
+				</label>
+				</label>
+			</div>
+			<div class="preventivo">
+				<h5>Seleziona gli optional e compila il form per richiedere il preventivo</h5>
+				<form>
+					<div class="form-group">
+					    <label>Nome</label>
+					    <input type="text" class="form-control" id="nome" placeholder="Es. Francesco">
+					    
+					  </div>
+					  <div class="form-group">
+					    <label>Cognome</label>
+					    <input type="text" class="form-control" id="cognome" placeholder="Es. Rossi">
+					  </div>
+					  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+			<div class="servizi">
+				<div id="accordion" role="tablist" aria-multiselectable="true">
+				    <div class="card-header" role="tab" id="headingOne" style="float: left;">
+				      <h5 class="mb-0">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				        	Noleggia Auto
+				        </a>
+				      </h5>
+				    </div>
+
+				    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+				    	<form style="margin-top: 10px;">
+				    		<div class="form-group">
+				    		    <label style="float: left;">Nome</label>
+				    		    <input type="text" class="form-control" id="nome" placeholder="Es. Francesco">
+				    		    
+				    		  </div>
+				    		  <div class="form-group">
+				    		    <label>Cognome</label>
+				    		    <input type="text" class="form-control" id="cognome" placeholder="Es. Rossi">
+				    		  </div>
+				    		  <button type="submit" class="btn btn-primary">Submit</button>
+				    	</form>
+				    </div>
+
+				  
+				</div>
+
+			</div>
+		</div>
+	</content>
+</body>
+</html>
