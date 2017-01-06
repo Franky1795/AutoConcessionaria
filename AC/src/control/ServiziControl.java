@@ -29,6 +29,7 @@ public class ServiziControl extends HttpServlet {
 				String email = request.getParameter("email");
 				String contattotelefonico = request.getParameter("contattotelefonico");
 				
+				
 			}
 			else if (action.equalsIgnoreCase("noleggio")){
 				String nome = request.getParameter("nome");
@@ -38,6 +39,7 @@ public class ServiziControl extends HttpServlet {
 				Date datafine = request.getParameter("datafine");
 				String email = request.getParameter("email");
 				String contattotelefonico = request.getParameter("contattotelefonico");
+				model.Noleggio(noleggio);
 			}
 			
 			else if (action.equalsIgnoreCase("testdrive")){
@@ -47,6 +49,7 @@ public class ServiziControl extends HttpServlet {
 				Date datainizio = request.getParameter("datainizio");
 				String email = request.getParameter("email");
 				String contattotelefonico = request.getParameter("contattotelefonico");
+				model.TestDrive(test);
 			}
 			
 			else if (action.equalsIgnoreCase("newsletter")){
@@ -54,6 +57,7 @@ public class ServiziControl extends HttpServlet {
 				String cognome = request.getParameter("cognome");
 				String email = request.getParameter("email");
 				String contattotelefonico = request.getParameter("contattotelefonico");
+				model.Newsletter(news);
 			}
 			
 			
