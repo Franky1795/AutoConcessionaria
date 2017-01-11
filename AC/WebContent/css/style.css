@@ -109,3 +109,51 @@ header{
 	float: left;
 	margin-top: 10px;
 }
+
+.pulsanteAccordion{
+	width: 100%;
+	background-color: aliceblue;
+	padding: 15px 0;
+	text-align: center;
+	border-bottom: 2px solid #0275d8;
+	border-radius: 3px;
+	margin-top: 10px;
+}
+
+.riga{
+	float: left;
+	width: 100%;
+	padding: 20px 10px;
+	font-size: 2rem;
+	border-bottom: 1px solid black;
+}
+
+.riga:nth-child(odd){
+	background-color: aliceblue;	
+}
+
+.riga:first-child{
+	border-top: 1px solid black;
+}
+
+.riga img{
+	float: left;
+	width: 150px;
+}
+
+.nomeAuto{
+	float: left;
+	margin-left: 20px;
+}
+
+.riga p{
+	margin-top: 20px;
+}
+
+a.riga{
+	color: black;
+}
+
+a.riga:hover{
+	color: #025aa5;
+}
