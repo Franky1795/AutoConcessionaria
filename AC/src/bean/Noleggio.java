@@ -1,47 +1,71 @@
 package bean;
 
+import java.sql.Date;
 public class Noleggio
 {
 	public Noleggio()
 	{
-		codice = -1;
-		datainizio = "";
-		datafine = "";
+		setDataInizio(null);
+		setDataFine(null);
+		setNome("");
+		setCognome("");
+		setCodiceFiscale("");
+		setCodiceAuto(-1);
+		setEmail("");
 	}
 	
+	public Date getData() {
+		return data;
+	}
+	
+	public void setData(Date data) {
+		this.data = data;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
 
-	public int getCodice() 
-	{
-		return codice;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	
-	public void setCodice(int codice) 
-	{
-		this.codice = codice;
+
+	public String getCognome() {
+		return cognome;
 	}
-	
-	public Date getDatainizio() 
-	{
-		return datainizio;
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
-	
-	public void setDatainizio(Date datainizio) 
-	{
-		this.datainizio = datainizio;
+	public String getCodiceFiscale() {
+		return codiceFiscale;
 	}
-	
-	public Date getDatafine() 
-	{
-		return datafine;
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
 	}
-	
-	public void setDatafine(Date datafine) 
-	{
-		this.datafine = datafine;
+
+	public int getCodiceAuto() {
+		return codiceAuto;
 	}
-	
-	private int codice;
-	private Date datainizio;
-	private Date datafine;
-	
+
+	public void setCodiceAuto(int codiceAuto) {
+		this.codiceAuto = codiceAuto;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	private Date data;
+	private String nome;
+	private String cognome;
+	private String codiceFiscale;
+	private String email;
+	private int codiceAuto;
+
 }
