@@ -55,19 +55,17 @@ public class ServiziControl extends HttpServlet {
 //				Noleggio noleggio = new Noleggio();
 //				noleggio.setNome(request.getParameter("nome"));
 //				noleggio.setCognome(request.getParameter("cognome"));
-//				noleggio.setCodiceFiscale(request.getParameter("codicefiscale"));
-//				noleggio.setDataInizio(request.getParameter("datainizio"));
-//				noleggio.setDataFine(request.getParameter("datafine"));
+//				noleggio.setCodiceFiscale(request.getParameter("cf"));
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				
+//				noleggio.setDataInizio(datainizio));
+//				noleggio.setDataFine(datafine);
 //				noleggio.setEmail(request.getParameter("email"));
 //				noleggio.setContattoTelefonico(request.getParameter("contattotelefonico"));
-//				String nome = request.getParameter("nome");
-//				String cognome = request.getParameter("cognome");
-//				String codiceFiscale = request.getParameter("codicefiscale");
-//				Date datainizio = request.getParameter("datainizio");
-//				Date datafine = request.getParameter("datafine");
-//				String email = request.getParameter("email");
-//				String contattotelefonico = request.getParameter("contattotelefonico");
-//				model.doSave(noleggio);
+//				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
+				noleggio.setCodiceAuto(cod);
+
+				model.doSave(noleggio);
 			}
 			
 			else if (action.equalsIgnoreCase("testdrive")){
