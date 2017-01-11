@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import bean.Newsletter;
+import bean.TestDrive;
 import bean.Auto;
 import utils.DriverManagerConnectionPool;
 
@@ -141,7 +142,7 @@ public class AutoModel
 			preparedStatement.setString(1, news.getNome());
 			preparedStatement.setString(2, news.getCognome());
 			preparedStatement.setString(3, news.getEmail());
-			preparedStatement.setInt(4, news.getCodice_auto());
+			preparedStatement.setInt(4, news.getCodiceAuto());
 
 			preparedStatement.executeUpdate();
 
@@ -161,40 +162,42 @@ public class AutoModel
 		}
 	}
 	
-//	public void doSave(TestDrive test) throws SQLException
-//	{
-//		Connection connection = null;
-//		PreparedStatement preparedStatement = null;
-//		
-//		String insertSQL = "INSERT INTO " + AutoModel.TestDrive + " VALUES (?, ?, ?, ?, ?)";
-//		
-//		try
-//		{
-//			connection = DriverManagerConnectionPool.getConnection();
-//			preparedStatement = connection.prepareStatement(insertSQL);
-//			preparedStatement.setDate(1, test.getData());
-//			preparedStatement.setString(2, test.getNome());
-//			preparedStatement.setString(3, test.getCognome());
-//			preparedStatement.setString(4, test.getCodiceFiscale());
-//			preparedStatement.setString(5, test.getEmail());
-//
-//			preparedStatement.executeUpdate();
-//
-//			connection.commit();
-//		}
-//		finally
-//		{
-//			try
-//			{
-//				if(preparedStatement != null)
-//					preparedStatement.close();
-//			}
-//			finally
-//			{
-//				DriverManagerConnectionPool.releaseConnection(connection);
-//			}
-//		}
-//	}
+	public void doSave(TestDrive test) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String insertSQL = "INSERT INTO " + AutoModel.TestDrive + " (nome, cognome, codice_fiscale, data, email, id_auto) VALUES (?, ?, ?, ?, ?, ?)";
+		
+		try
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			preparedStatement.setString(1, test.getNome());
+			preparedStatement.setString(2, test.getCognome());
+			preparedStatement.setString(3, test.getCodiceFiscale());
+			preparedStatement.setDate(4, test.getData());
+			preparedStatement.setString(5, test.getEmail());
+			preparedStatement.setInt(6, test.getCodiceAuto());
+
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		}
+		finally
+		{
+			try
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 	
 //	public void doSave(Noleggio noleggio) throws SQLException
 //	{
@@ -235,6 +238,6 @@ public class AutoModel
 
 	private static final String Auto = "auto";
 	private static final String Noleggio = "noleggio";
-	private static final String TestDrive = "nestDrive";
+	private static final String TestDrive = "testdrive";
 	private static final String Newsletter = "newsletter";
 }

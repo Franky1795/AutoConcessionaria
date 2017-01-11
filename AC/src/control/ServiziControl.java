@@ -1,7 +1,11 @@
 package control;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -67,20 +71,27 @@ public class ServiziControl extends HttpServlet {
 			}
 			
 			else if (action.equalsIgnoreCase("testdrive")){
-//				TestDrive test = new TestDrive();
-//				test.setNome(request.getParameter("nome"));
-//				test.setCognome(request.getParameter("cognome"));
-//				test.setCodiceFiscale(request.getParameter("codicefiscale"));
-//				test.setDataInizio(request.getParameter("datainizio"));
-//				test.setEmail(request.getParameter("email"));
-//				test.setContattoTelefonico(request.getParameter("contattotelefonico"));
-//				String nome = request.getParameter("nome");
-//				String cognome = request.getParameter("cognome");
-//				String codiceFiscale = request.getParameter("codicefiscale");
-//				Date datainizio = request.getParameter("datainizio");
-//				String email = request.getParameter("email");
-//				String contattotelefonico = request.getParameter("contattotelefonico");
-//				model.doSave(test);
+				TestDrive test = new TestDrive();
+				test.setNome(request.getParameter("nome"));
+				test.setCognome(request.getParameter("cognome"));
+				test.setCodiceFiscale(request.getParameter("cf"));
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			    java.util.Date d = null;
+			    
+			    try {
+					d = sdf.parse(request.getParameter("data"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    
+			    java.sql.Date data = new java.sql.Date(d.getTime());
+				test.setData(data);
+				test.setEmail(request.getParameter("email"));
+				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
+				test.setCodiceAuto(cod);
+				
+				model.doSave(test);
 			}
 			
 			else if (action.equalsIgnoreCase("newsletter")){
@@ -88,8 +99,8 @@ public class ServiziControl extends HttpServlet {
 				news.setNome(request.getParameter("nome"));
 				news.setCognome(request.getParameter("cognome"));
 				news.setEmail(request.getParameter("email"));
-				int cod = Integer.parseInt(request.getParameter("codice_auto"));
-				news.setCodice_auto(cod);
+				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
+				news.setCodiceAuto(cod);
 				model.doSave(news);
 			}
 			
