@@ -14,12 +14,20 @@ public class Noleggio
 		setEmail("");
 	}
 	
-	public Date getData() {
-		return data;
+	public Date getDataInizio() {
+		return datainizio;
 	}
 	
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataInizio(Date datainizio) {
+		this.data = datainizio;
+	}
+	
+	public Date getDataFine() {
+		return datafine;
+	}
+	
+	public void setDataFine(Date datafine) {
+		this.data = datafine;
 	}
 	
 	public String getNome() {
@@ -61,7 +69,8 @@ public class Noleggio
 		this.email = email;
 	}
 
-	private Date data;
+	private Date datainizio;
+	private Date datafine;
 	private String nome;
 	private String cognome;
 	private String codiceFiscale;
