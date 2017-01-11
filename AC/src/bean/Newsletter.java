@@ -8,6 +8,7 @@ public class Newsletter
 		nome = "";
 		cognome = "";
 		email = "";
+		codice_auto = -1;
 	}
 	
 	public int getCodice()
@@ -48,9 +49,19 @@ public class Newsletter
 	}
 	
 
+	public int getCodice_auto() {
+		return codice_auto;
+	}
+
+	public void setCodice_auto(int codice_auto) {
+		this.codice_auto = codice_auto;
+	}
+
+
 	private int codice;
 	private String nome;
 	private String cognome;
+	private int codice_auto;
 	private String email;
 	
 }

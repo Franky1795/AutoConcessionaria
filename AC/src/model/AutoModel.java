@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import bean.Newsletter;
 import utils.DriverManagerConnectionPool;
 
 public class AutoModel 
@@ -136,10 +137,10 @@ public class AutoModel
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, news.getId());
-			preparedStatement.setString(2, news.getNome());
-			preparedStatement.setString(3, news.getCognome());
-			preparedStatement.setString(4, news.getEmail());
+			preparedStatement.setString(1, news.getNome());
+			preparedStatement.setString(2, news.getCognome());
+			preparedStatement.setString(3, news.getEmail());
+			preparedStatement.setInt(4, news.getCodice_auto());
 
 			preparedStatement.executeUpdate();
 
@@ -231,8 +232,8 @@ public class AutoModel
 	}
 	
 
-	private static final String Auto = "Auto";
-	private static final String Noleggio = "Noleggio";
-	private static final String TestDrive = "TestDrive";
-	private static final String Newsletter = "Newsletter";
+	private static final String Auto = "auto";
+	private static final String Noleggio = "noleggio";
+	private static final String TestDrive = "nestDrive";
+	private static final String Newsletter = "newsletter";
 }

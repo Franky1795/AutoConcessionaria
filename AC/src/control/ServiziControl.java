@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Newsletter;
+import model.AutoModel;
+
 /**
  * Servlet implementation class ServiziControl
  */
@@ -79,11 +82,8 @@ public class ServiziControl extends HttpServlet {
 				news.setNome(request.getParameter("nome"));
 				news.setCognome(request.getParameter("cognome"));
 				news.setEmail(request.getParameter("email"));
-				news.setContattoTelefonico(request.getParameter("contattotelefonico"))
-				String nome = request.getParameter("nome");
-				String cognome = request.getParameter("cognome");
-				String email = request.getParameter("email");
-				String contattotelefonico = request.getParameter("contattotelefonico");
+				int cod = Integer.parseInt(request.getParameter("codice_auto"))
+				news.setCodice_auto(cod);
 				model.doSave(news);
 			}
 			
