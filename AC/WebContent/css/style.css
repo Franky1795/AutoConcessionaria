@@ -157,3 +157,11 @@ a.riga{
 a.riga:hover{
 	color: #025aa5;
 }
+
+.custom-file-control:lang(it)::before {
+  content: "Esplora";
+}
+
+.custom-file-control:lang(it)::after {
+  content: "Scegli il file...";
+}
