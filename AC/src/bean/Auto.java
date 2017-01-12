@@ -6,11 +6,12 @@ public class Auto
 {
 	public Auto()
 	{
-		codice = -1;
-		nome = "";
-		colore = "";
+		setCodice(-1);;
+		setNome("");
 		setImmagine("");
 		setPrezzo(-1);
+		setDescrizione("");
+		accessori = new ArrayList<Accessorio>();
 	}
 	
 	
@@ -34,17 +35,7 @@ public class Auto
 	{
 		this.nome = nome;
 	}
-	
-	
-	public String getColore()
-	{
-		return colore;
-	}
-	
-	public void setColore(String colore)
-	{
-		this.colore = colore;
-	}
+
 	
 	public String getImmagine() {
 		return immagine;
@@ -71,11 +62,22 @@ public class Auto
 	}
 
 
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
+
 	private int codice;
 	private String nome;
-	private String colore;
 	private String immagine;
 	private int prezzo;
-	private ArrayList<Accessorio> accessori = new ArrayList<Accessorio>();
+	private String descrizione;
+	private ArrayList<Accessorio> accessori;
 	
 }
