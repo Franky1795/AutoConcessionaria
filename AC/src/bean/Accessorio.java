@@ -22,12 +22,12 @@ public class Accessorio {
 		this.nome = nome;
 	}
 
-	public boolean isTipo() {
-		return tipo;
+	public boolean isBase() {
+		return base;
 	}
 
-	public void setTipo(boolean tipo) {
-		this.tipo = tipo;
+	public void setBase(boolean base) {
+		this.base = base;
 	}
 
 	public int getCosto() {
@@ -40,7 +40,7 @@ public class Accessorio {
 
 	private int id;
 	private String nome;
-	private boolean tipo;
+	private boolean base;
 	private int costo;
 	
 }

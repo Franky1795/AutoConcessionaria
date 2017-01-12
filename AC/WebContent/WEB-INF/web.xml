@@ -9,6 +9,12 @@
     <servlet-name>ServiziControl</servlet-name>
     <url-pattern>/servizi</url-pattern>
   </servlet-mapping>
-
-  
+  <servlet>
+    <servlet-name>AutoControl</servlet-name>
+    <servlet-class>control.AutoControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutoControl</servlet-name>
+    <url-pattern>/auto</url-pattern>
+  </servlet-mapping>
 </web-app>

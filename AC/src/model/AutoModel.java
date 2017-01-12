@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import bean.Newsletter;
 import bean.TestDrive;
 import bean.Auto;
+import bean.Accessorio;
 import utils.DriverManagerConnectionPool;
 
 public class AutoModel 
@@ -84,7 +85,61 @@ public class AutoModel
 		return result != 0;
 	}
 
-	
+	public Auto doRetrieveByKey(int code) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Auto auto = new Auto();
+
+		String selectSQL = "SELECT * FROM " + AutoModel.Auto + " WHERE id_auto = ?";
+
+		try
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while(rs.next())
+			{
+				auto.setCodice(rs.getInt("id_auto"));
+				auto.setNome(rs.getString("nome"));
+				auto.setDescrizione(rs.getString("descrizione"));
+				auto.setPrezzo(rs.getInt("costo"));
+				auto.setImmagine("immagine");
+			}
+			
+			String selectSQL2 = "SELECT * FROM " + AutoModel.Possiede + " NATURAL JOIN " + AutoModel.Accessorio +" WHERE id_auto = ?";
+			preparedStatement = connection.prepareStatement(selectSQL2);
+			preparedStatement.setInt(1, code);
+			rs = preparedStatement.executeQuery();
+			
+			
+			while(rs.next())
+			{
+				Accessorio acc = new Accessorio();
+				acc.setCosto(rs.getInt("prezzo"));
+				acc.setNome(rs.getString("nome"));
+				acc.setBase(rs.getBoolean("tipo"));
+				auto.addAccessorio(acc);
+			}
+			
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return auto;
+	}
 
 //	public Collection<Auto> doRetrieveAll() throws SQLException
 //	{
@@ -240,4 +295,6 @@ public class AutoModel
 	private static final String Noleggio = "noleggio";
 	private static final String TestDrive = "testdrive";
 	private static final String Newsletter = "newsletter";
+	private static final String Possiede = "possiede";
+	private static final String Accessorio = "accessorio";
 }

@@ -30,7 +30,7 @@ public class DriverManagerConnectionPool
 		String port = "3306";
 		String db = "autoconcessionaria";
 		String username = "root";
-		String password = "admin";
+		String password = "root";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db, username, password);
 
