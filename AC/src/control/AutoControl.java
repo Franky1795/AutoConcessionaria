@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,11 +35,13 @@ public class AutoControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
+		RequestDispatcher dispatcher = null;
 		try {
 			if(action.equalsIgnoreCase("read")){
 				int code = Integer.parseInt(request.getParameter("id"));
 				Auto auto = model.doRetrieveByKey(code);
 				request.setAttribute("auto", auto);
+				dispatcher = getServletContext().getRequestDispatcher("/auto.jsp");
 			}
 			else if(action.equalsIgnoreCase("readall")){
 				
@@ -47,6 +50,8 @@ public class AutoControl extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		dispatcher.forward(request, response);
 	}
 
 	/**
