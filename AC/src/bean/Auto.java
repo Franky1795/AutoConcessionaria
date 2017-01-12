@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.ArrayList;
+
 public class Auto
 {
 	public Auto()
@@ -7,27 +9,11 @@ public class Auto
 		codice = -1;
 		nome = "";
 		colore = "";
-		optional_base = "";
-		optional_agg= "";
 		setImmagine("");
 		setPrezzo(-1);
 	}
 	
-	public String getOptional_base() {
-		return optional_base;
-	}
-
-	public void setOptional_base(String optional_base) {
-		this.optional_base = optional_base;
-	}
-
-	public String getOptional_agg() {
-		return optional_agg;
-	}
-
-	public void setOptional_agg(String optional_agg) {
-		this.optional_agg = optional_agg;
-	}
+	
 
 	public int getCodice()
 	{
@@ -75,6 +61,14 @@ public class Auto
 	public void setPrezzo(int prezzo) {
 		this.prezzo = prezzo;
 	}
+	
+	public void addAccessorio(Accessorio acc){
+		accessori.add(acc);
+	}
+	
+	public ArrayList<Accessorio> getListaAccessorio(){
+		return accessori;
+	}
 
 
 	private int codice;
@@ -82,7 +76,6 @@ public class Auto
 	private String colore;
 	private String immagine;
 	private int prezzo;
-	private String optional_base;
-	private String optional_agg;
+	private ArrayList<Accessorio> accessori = new ArrayList<Accessorio>();
 	
 }
