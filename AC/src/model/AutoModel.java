@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -141,47 +142,47 @@ public class AutoModel
 		return auto;
 	}
 
-//	public Collection<Auto> doRetrieveAll() throws SQLException
-//	{
-//		Connection connection = null;
-//		PreparedStatement preparedStatement = null;
-//		Collection<Auto> products = new LinkedList<Auto>();
-//
-//		String selectSQL = "SELECT * FROM " + AutoModel.Auto + " ORDER BY ID";
-//		try
-//		{
-//			connection = DriverManagerConnectionPool.getConnection();
-//			preparedStatement = connection.prepareStatement(selectSQL);
-//			
-//			
-//			ResultSet rs = preparedStatement.executeQuery();
-//
-//			while(rs.next())
-//			{
-//				Auto auto = new Auto();
-//				auto.setId(rs.getInt("ID"));
-//				auto.setNomeAuto(rs.getString("NomeAuto"));
-//				auto.setDescrizione(rs.getString("Descrizione"));
-//				auto.setPrezzo(rs.getString("Prezzo"));
-//				auto.setOptionalBase(rs.getString("OptionalBase"));
-//				products.add(auto);
-//			}
-//
-//		}
-//		finally
-//		{
-//			try
-//			{
-//				if (preparedStatement != null)
-//					preparedStatement.close();
-//			}
-//			finally
-//			{
-//				DriverManagerConnectionPool.releaseConnection(connection);
-//			}
-//		}
-//		return products;
-//	}
+	public ArrayList<Auto> doRetrieveAll() throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ArrayList<Auto> listaAuto = new ArrayList<Auto>();
+
+		String selectSQL = "SELECT * FROM " + AutoModel.Auto + " ORDER BY id_auto";
+		try
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while(rs.next())
+			{
+				Auto auto = new Auto();
+				auto.setCodice(rs.getInt("id_auto"));
+				auto.setNome(rs.getString("nome"));
+				auto.setDescrizione(rs.getString("descrizione"));
+				auto.setPrezzo(rs.getInt("costo"));
+				auto.setImmagine(rs.getString("foto"));
+				listaAuto.add(auto);
+			}
+
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return listaAuto;
+	}
 	
 	public void doSave(Newsletter news) throws SQLException
 	{
