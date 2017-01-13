@@ -83,7 +83,7 @@
 							if(!a.isBase()){
 					%>
 					<label class="custom-control custom-checkbox">
-					  <input type="checkbox" name="aggiuntivi" class="custom-control-input">
+					  <input type="checkbox" name="aggiuntivi" class="custom-control-input" value="<%=a.getCosto()%>">
 					  <span class="custom-control-indicator"></span>
 					  <span class="custom-control-description"><%=a.getNome()%></span>
 					</label>
