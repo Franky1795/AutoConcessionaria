@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+	<%@ page import="java.util.*, bean.Auto" %>
+	<% ArrayList <Auto> a = (ArrayList<Auto>) request.getAttribute("auto"); %>
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" >
 	<link type="text/css" rel="stylesheet" href="./css/style.css" >
 	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
@@ -113,9 +115,17 @@
 					<div class="form-group">
 					    <label for="exampleSelect1">Seleziona l'auto da rimuovere</label>
 					    <select class="form-control" id="exampleSelect1">
-							<option>-</option>
-					      	<option>Punto</option>
-					      	<option>Panda</option>
+					    		<option>-</option>
+								<%
+								for(Auto auto : a){
+								%>
+									<option value="<%=auto.getCodice()%>"><%=auto.getNome() %></option>
+									
+								<%	
+								}
+								%>
+
+
 					    </select>
 					  </div>
 				</div>
