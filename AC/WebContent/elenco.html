@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ page import="java.util.*, bean.Auto" %>
-	<%
-		Collection<?> auto = (Collection<?>) request.getAttribute("auto");
-	%>
-	
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" >
 	<link type="text/css" rel="stylesheet" href="./css/style.css" >
 	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
@@ -51,22 +46,34 @@
 		<div class="container" style="padding-top: 1rem; padding-bottom: 50px;">
 			<h2> Elenco Auto</h2>
 			<div>
-				
-				<%
-					Iterator<?> it = auto.iterator();
-					while (it.hasNext()) {
-						Auto auto1 = (Auto) it.next(); %>
-					<a href="#" class="riga">
+				<a href="#" class="riga">
 					<div>
-						<img src="./images/<%=auto1.getImmagine()%>">
-						<p class="nomeAuto"><%=auto1.getNome()%></p>
-						<p style="float: right;"> <%=auto1.getPrezzo()%> &euro;</p>
+						<img src="./images/car.jpg">
+						<p class="nomeAuto">Punto</p>
+						<p style="float: right;"> 3000&euro;</p>
 					</div>
-					</a>
-					<% 
-						}
-					%>
-			
+				</a>
+				<a href="#" class="riga">
+					<div>
+						<img src="./images/car.jpg">
+						<p class="nomeAuto">Punto</p>
+						<p style="float: right;"> 3000&euro;</p>
+					</div>
+				</a>
+				<a href="#" class="riga">
+					<div>
+						<img src="./images/car.jpg">
+						<p class="nomeAuto">Punto</p>
+						<p style="float: right;"> 3000&euro;</p>
+					</div>
+				</a>
+				<a href="#" class="riga">
+					<div>
+						<img src="./images/car.jpg">
+						<p class="nomeAuto">Punto</p>
+						<p style="float: right;"> 3000&euro;</p>
+					</div>
+				</a>
 			</div>			
 		</div>
 	</content>
