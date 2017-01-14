@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Auto;
 import bean.Newsletter;
 import bean.TestDrive;
 import model.AutoModel;
@@ -85,6 +88,7 @@ public class ServiziControl extends HttpServlet {
 				test.setCodiceAuto(cod);
 				
 				model.doSave(test);
+				dispatcher = getServletContext().getRequestDispatcher("/auto.html");
 			}
 			
 			else if (action.equalsIgnoreCase("newsletter")){
@@ -95,8 +99,22 @@ public class ServiziControl extends HttpServlet {
 				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
 				news.setCodiceAuto(cod);
 				model.doSave(news);
+				dispatcher = getServletContext().getRequestDispatcher("/auto.html");
 			}
 			
+			else if(action.equalsIgnoreCase("readall")){
+				Collection<Auto> auto = model.doRetrieveAll();
+				request.removeAttribute("auto");
+				request.setAttribute("auto", auto);
+				dispatcher = getServletContext().getRequestDispatcher("/elenco.jsp");
+			}
+			
+			else if (action.equalsIgnoreCase("amministrazione")){
+				ArrayList<Auto> auto = model.doRetrieveAll();
+				request.removeAttribute("auto");
+				request.setAttribute("auto", auto);
+				dispatcher = getServletContext().getRequestDispatcher("/amministrazione.jsp");
+			}
 			
 			
 		} catch (SQLException e) {
