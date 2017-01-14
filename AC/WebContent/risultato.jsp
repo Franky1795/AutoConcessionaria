@@ -43,6 +43,24 @@
 	</div></header>
 	<content>
 		<div class="container" style="padding-top: 1rem; padding-bottom: 50px;">
+			<%
+			if(request.getAttribute("ris") != null){
+			boolean ris = (boolean) request.getAttribute("ris");
+				if(ris){ %>
+			<div class="alert alert-success" role="alert" style="text-align:center; letter-spacing: 1px;">
+			  	<strong>Ottimo!</strong> L'operazione è andata a buon fine.
+			</div>
+				<%
+				}
+				else{%>
+			<div class="alert alert-danger" role="alert" style="text-align:center; letter-spacing: 1px;">
+  				<strong></strong>Si è verificato un errore. Riprova.
+			</div>
+			<%
+					}
+				}
+				else{
+			%>
 			<div class="preventivo">
 				<% String cognome = (String) request.getAttribute("cognome");
 					int somma = (int) request.getAttribute("somma"); %>
@@ -50,6 +68,7 @@
 			
 			
 			</div>
+			<%} %>
 		</div>
 	</content>
 

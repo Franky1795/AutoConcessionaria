@@ -12,6 +12,7 @@ import bean.Newsletter;
 import bean.TestDrive;
 import bean.Auto;
 import bean.Accessorio;
+import bean.Noleggio;
 import utils.DriverManagerConnectionPool;
 
 public class AutoModel 
@@ -257,10 +258,10 @@ public class AutoModel
 	
 	public void doSave(Noleggio noleggio) throws SQLException
 	{
-Connection connection = null;
+		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String insertSQL = "INSERT INTO " + AutoModel.Noleggio + " VALUES (?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO " + AutoModel.Noleggio + " (nome, cognome, codice_fiscale, data_inizio, data_fine, email, id_auto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try
 		{
@@ -272,7 +273,7 @@ Connection connection = null;
 			preparedStatement.setDate(4, noleggio.getDataInizio());
 			preparedStatement.setDate(5, noleggio.getDataFine());
 			preparedStatement.setString(6, noleggio.getEmail());
-
+			preparedStatement.setInt(7, noleggio.getCodiceAuto());
 			preparedStatement.executeUpdate();
 
 			connection.commit();

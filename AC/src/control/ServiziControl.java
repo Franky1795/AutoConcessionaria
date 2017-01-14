@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Auto;
 import bean.Newsletter;
+import bean.Noleggio;
 import bean.TestDrive;
 import model.AutoModel;
 
@@ -30,7 +31,7 @@ public class ServiziControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher=null;
+		RequestDispatcher dispatcher = null;
 		try {
 			if(action.equalsIgnoreCase("preventivo")){
                 int prezzo= Integer.parseInt(request.getParameter("prezzoAuto"));
@@ -45,12 +46,14 @@ public class ServiziControl extends HttpServlet {
 				}
 				request.setAttribute("somma", somma);
 				request.setAttribute("cognome", cognome);
+				request.setAttribute("ris", true);
+				
 				dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
 				
 				
 			}
 			else if (action.equalsIgnoreCase("noleggio")){
-Noleggio noleggio = new Noleggio();
+				Noleggio noleggio = new Noleggio();
 				noleggio.setNome(request.getParameter("nome"));
 				noleggio.setCognome(request.getParameter("cognome"));
 				noleggio.setCodiceFiscale(request.getParameter("cf"));
@@ -71,9 +74,10 @@ Noleggio noleggio = new Noleggio();
 				noleggio.setEmail(request.getParameter("email"));
 				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
 				noleggio.setCodiceAuto(cod);
-
-				model.doSave(noleggio);			
-}
+				model.doSave(noleggio);	
+				request.setAttribute("ris", true);
+				dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
+			}
 			
 			else if (action.equalsIgnoreCase("testdrive")){
 				TestDrive test = new TestDrive();
@@ -97,7 +101,8 @@ Noleggio noleggio = new Noleggio();
 				test.setCodiceAuto(cod);
 				
 				model.doSave(test);
-				dispatcher = getServletContext().getRequestDispatcher("/auto.html");
+				request.setAttribute("ris", true);
+				dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
 			}
 			
 			else if (action.equalsIgnoreCase("newsletter")){
@@ -108,7 +113,8 @@ Noleggio noleggio = new Noleggio();
 				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
 				news.setCodiceAuto(cod);
 				model.doSave(news);
-				dispatcher = getServletContext().getRequestDispatcher("/auto.html");
+				request.setAttribute("ris", true);
+				dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
 			}
 			
 			else if(action.equalsIgnoreCase("readall")){
@@ -125,13 +131,12 @@ Noleggio noleggio = new Noleggio();
 				dispatcher = getServletContext().getRequestDispatcher("/amministrazione.jsp");
 			}
 			
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		dispatcher.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
