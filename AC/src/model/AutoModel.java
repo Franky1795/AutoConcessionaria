@@ -255,41 +255,41 @@ public class AutoModel
 		}
 	}
 	
-//	public void doSave(Noleggio noleggio) throws SQLException
-//	{
-//		Connection connection = null;
-//		PreparedStatement preparedStatement = null;
-//		
-//		String insertSQL = "INSERT INTO " + AutoModel.Noleggio + " VALUES (?, ?, ?, ?, ?, ?)";
-//		
-//		try
-//		{
-//			connection = DriverManagerConnectionPool.getConnection();
-//			preparedStatement = connection.prepareStatement(insertSQL);
-//			preparedStatement.setString(1, noleggio.getNome());
-//			preparedStatement.setString(2, noleggio.getCognome());
-//			preparedStatement.setString(3, noleggio.getCodiceFiscale());
-//			preparedStatement.setDate(4, noleggio.getDataInizio());
-//			preparedStatement.setDate(5, noleggio.getDataFine());
-//			preparedStatement.setString(6, noleggio.getEmail());
-//
-//			preparedStatement.executeUpdate();
-//
-//			connection.commit();
-//		}
-//		finally
-//		{
-//			try
-//			{
-//				if(preparedStatement != null)
-//					preparedStatement.close();
-//			}
-//			finally
-//			{
-//				DriverManagerConnectionPool.releaseConnection(connection);
-//			}
-//		}
-//	}
+	public void doSave(Noleggio noleggio) throws SQLException
+	{
+Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String insertSQL = "INSERT INTO " + AutoModel.Noleggio + " VALUES (?, ?, ?, ?, ?, ?)";
+		
+		try
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, noleggio.getNome());
+			preparedStatement.setString(2, noleggio.getCognome());
+			preparedStatement.setString(3, noleggio.getCodiceFiscale());
+			preparedStatement.setDate(4, noleggio.getDataInizio());
+			preparedStatement.setDate(5, noleggio.getDataFine());
+			preparedStatement.setString(6, noleggio.getEmail());
+
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		}
+		finally
+		{
+			try
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 	
 
 	private static final String Auto = "auto";

@@ -15,19 +15,19 @@ public class Noleggio
 	}
 	
 	public Date getDataInizio() {
-		return datainizio;
+		return dataInizio;
 	}
 	
 	public void setDataInizio(Date datainizio) {
-		this.data = datainizio;
+		this.dataInizio = datainizio;
 	}
 	
 	public Date getDataFine() {
-		return datafine;
+		return dataFine;
 	}
 	
 	public void setDataFine(Date datafine) {
-		this.data = datafine;
+		this.dataFine = datafine;
 	}
 	
 	public String getNome() {
@@ -69,8 +69,8 @@ public class Noleggio
 		this.email = email;
 	}
 
-	private Date datainizio;
-	private Date datafine;
+	private Date dataInizio;
+	private Date dataFine;
 	private String nome;
 	private String cognome;
 	private String codiceFiscale;

@@ -119,13 +119,12 @@
 				      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 				        	<div class="pulsanteAccordion">Noleggia Auto</div>
 				      </a>
-				    </h5>
+				    </h5> 
 				    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
-				    	<form style="margin-top: 10px;">
+				    	<form style="margin-top: 10px;" action="servizi" method="POST">
 				    		<div class="form-group">
 				    		    <label style="float: left;">Nome</label>
 				    		    <input type="text" class="form-control" id="nome" placeholder="Es. Francesco">
-				    		    
 				    		  </div>
 				    		  <div class="form-group">
 				    		    <label>Cognome</label>
@@ -135,6 +134,20 @@
 							    <label>Codice Fiscale</label>
 							    <input maxlength="16" type="text" class="form-control" id="cf" placeholder="Inserisci codice fiscale">
 							  </div>
+				    		  <div class="form-group">
+			    		  		<label>Data Inizio</label>
+			    		  	    <input class="form-control" type="date" name="datainizio" value="12-10-1995" placeholder="gg/mm/aaaa" id="example-date-input">
+			    		  	  </div>
+			    		  	  <div class="form-group">
+			    		  		<label>Data Fine</label>
+			    		  	    <input class="form-control" type="date" name="datafine" value="15-10-1995" placeholder="gg/mm/aaaa" id="example-date-input">
+			    		  	  </div>
+							  <div class="form-group">
+				    		    <label>E-mail</label>
+				    		    <input type="email" class="form-control" name="email" placeholder="Es. rossi@mail.it">
+				    		  </div>
+				    		  <input type="hidden" name="action" value="noleggio">
+							  <input type="hidden" name="codiceAuto" value="0">
 				    		  <button type="submit" class="btn btn-primary">Invia</button>
 				    	</form>
 				    </div>

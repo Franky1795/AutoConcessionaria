@@ -50,21 +50,30 @@ public class ServiziControl extends HttpServlet {
 				
 			}
 			else if (action.equalsIgnoreCase("noleggio")){
-//				Noleggio noleggio = new Noleggio();
-//				noleggio.setNome(request.getParameter("nome"));
-//				noleggio.setCognome(request.getParameter("cognome"));
-//				noleggio.setCodiceFiscale(request.getParameter("cf"));
-//				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-				
-//				noleggio.setDataInizio(datainizio));
-//				noleggio.setDataFine(datafine);
-//				noleggio.setEmail(request.getParameter("email"));
-//				noleggio.setContattoTelefonico(request.getParameter("contattotelefonico"));
-//				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
-//				noleggio.setCodiceAuto(cod);
+Noleggio noleggio = new Noleggio();
+				noleggio.setNome(request.getParameter("nome"));
+				noleggio.setCognome(request.getParameter("cognome"));
+				noleggio.setCodiceFiscale(request.getParameter("cf"));
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				java.util.Date di = null;
+				java.util.Date df = null;
+				try {
+					di = sdf.parse(request.getParameter("dataInizio"));
+					df = sdf.parse(request.getParameter("dataFine"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    java.sql.Date dataInizio = new java.sql.Date(di.getTime());
+			    java.sql.Date dataFine = new java.sql.Date(df.getTime());
+			    noleggio.setDataInizio(dataInizio);
+			    noleggio.setDataFine(dataFine);
+				noleggio.setEmail(request.getParameter("email"));
+				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
+				noleggio.setCodiceAuto(cod);
 
-//				model.doSave(noleggio);
-			}
+				model.doSave(noleggio);			
+}
 			
 			else if (action.equalsIgnoreCase("testdrive")){
 				TestDrive test = new TestDrive();
