@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
 import bean.Newsletter;
+import bean.Noleggio;
 import bean.TestDrive;
 import bean.Auto;
 import bean.Accessorio;
@@ -142,49 +142,49 @@ public class AutoModel
 		return auto;
 	}
 
-	public ArrayList<Auto> doRetrieveAll() throws SQLException
-	{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ArrayList<Auto> listaAuto = new ArrayList<Auto>();
-
-		String selectSQL = "SELECT * FROM " + AutoModel.Auto + " ORDER BY id_auto";
-		try
-		{
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			
-			
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while(rs.next())
-			{
-				Auto auto = new Auto();
-				auto.setCodice(rs.getInt("id_auto"));
-				auto.setNome(rs.getString("nome"));
-				auto.setDescrizione(rs.getString("descrizione"));
-				auto.setPrezzo(rs.getInt("costo"));
-				auto.setImmagine(rs.getString("foto"));
-				listaAuto.add(auto);
-			}
-
-		}
-		finally
-		{
-			try
-			{
-				if (preparedStatement != null)
-					preparedStatement.close();
-			}
-			finally
-			{
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		return listaAuto;
-	}
+//	public Collection<Auto> doRetrieveAll() throws SQLException
+//	{
+//		Connection connection = null;
+//		PreparedStatement preparedStatement = null;
+//		Collection<Auto> products = new LinkedList<Auto>();
+//
+//		String selectSQL = "SELECT * FROM " + AutoModel.Auto + " ORDER BY ID";
+//		try
+//		{
+//			connection = DriverManagerConnectionPool.getConnection();
+//			preparedStatement = connection.prepareStatement(selectSQL);
+//			
+//			
+//			ResultSet rs = preparedStatement.executeQuery();
+//
+//			while(rs.next())
+//			{
+//				Auto auto = new Auto();
+//				auto.setId(rs.getInt("ID"));
+//				auto.setNomeAuto(rs.getString("NomeAuto"));
+//				auto.setDescrizione(rs.getString("Descrizione"));
+//				auto.setPrezzo(rs.getString("Prezzo"));
+//				auto.setOptionalBase(rs.getString("OptionalBase"));
+//				products.add(auto);
+//			}
+//
+//		}
+//		finally
+//		{
+//			try
+//			{
+//				if (preparedStatement != null)
+//					preparedStatement.close();
+//			}
+//			finally
+//			{
+//				DriverManagerConnectionPool.releaseConnection(connection);
+//			}
+//		}
+//		return products;
+//	}
 	
-	public void doSave(Newsletter news) throws SQLException
+	public void doSave(Newsletter newsletter) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -195,10 +195,10 @@ public class AutoModel
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, news.getNome());
-			preparedStatement.setString(2, news.getCognome());
-			preparedStatement.setString(3, news.getEmail());
-			preparedStatement.setInt(4, news.getCodiceAuto());
+			preparedStatement.setString(1, newsletter.getNome());
+			preparedStatement.setString(2, newsletter.getCognome());
+			preparedStatement.setString(3, newsletter.getEmail());
+			preparedStatement.setInt(4, newsletter.getCodiceAuto());
 
 			preparedStatement.executeUpdate();
 
@@ -255,41 +255,41 @@ public class AutoModel
 		}
 	}
 	
-//	public void doSave(Noleggio noleggio) throws SQLException
-//	{
-//		Connection connection = null;
-//		PreparedStatement preparedStatement = null;
-//		
-//		String insertSQL = "INSERT INTO " + AutoModel.Noleggio + " VALUES (?, ?, ?, ?, ?, ?)";
-//		
-//		try
-//		{
-//			connection = DriverManagerConnectionPool.getConnection();
-//			preparedStatement = connection.prepareStatement(insertSQL);
-//			preparedStatement.setString(1, noleggio.getNome());
-//			preparedStatement.setString(2, noleggio.getCognome());
-//			preparedStatement.setString(3, noleggio.getCodiceFiscale());
-//			preparedStatement.setDate(4, noleggio.getDataInizio());
-//			preparedStatement.setDate(5, noleggio.getDataFine());
-//			preparedStatement.setString(6, noleggio.getEmail());
-//
-//			preparedStatement.executeUpdate();
-//
-//			connection.commit();
-//		}
-//		finally
-//		{
-//			try
-//			{
-//				if(preparedStatement != null)
-//					preparedStatement.close();
-//			}
-//			finally
-//			{
-//				DriverManagerConnectionPool.releaseConnection(connection);
-//			}
-//		}
-//	}
+	public void doSave(Noleggio noleggio) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String insertSQL = "INSERT INTO " + AutoModel.Noleggio + " VALUES (?, ?, ?, ?, ?, ?)";
+		
+		try
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, noleggio.getNome());
+			preparedStatement.setString(2, noleggio.getCognome());
+			preparedStatement.setString(3, noleggio.getCodiceFiscale());
+			preparedStatement.setDate(4, noleggio.getDataInizio());
+			preparedStatement.setDate(5, noleggio.getDataFine());
+			preparedStatement.setString(6, noleggio.getEmail());
+
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		}
+		finally
+		{
+			try
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 	
 
 	private static final String Auto = "auto";
