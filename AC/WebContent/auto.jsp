@@ -74,7 +74,7 @@
 					} %>
 				</ul>
 			</div>
-			<form>
+			<form action="servizi" method="post">
 				<div class="optional">
 					<h3 style="border-bottom: 1px solid #0275d8">Optional</h3>
 					<%
@@ -84,6 +84,7 @@
 					%>
 					<label class="custom-control custom-checkbox">
 					  <input type="checkbox" name="aggiuntivi" class="custom-control-input" value="<%=a.getCosto()%>">
+					  
 					  <span class="custom-control-indicator"></span>
 					  <span class="custom-control-description"><%=a.getNome()%></span>
 					</label>
@@ -105,8 +106,9 @@
 					  	  	<label>Codice Fiscale</label>
 					  	  	<input maxlength="16" type="text" class="form-control" id="cf" placeholder="Inserisci codice fiscale">
 					  	</div>
+					  	<input type="hidden" name="prezzoAuto" value= <%auto.getPrezzo(); %> />
 					  	<button type="submit" class="btn btn-primary">Invia</button>
-					
+					    
 				</div>
 			</form>
 			<div class="servizi">
@@ -118,10 +120,11 @@
 				      </a>
 				    </h5>
 				    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
-				    	<form style="margin-top: 10px;" action="servizi" method="POST">
+				    	<form style="margin-top: 10px;">
 				    		<div class="form-group">
 				    		    <label style="float: left;">Nome</label>
 				    		    <input type="text" class="form-control" id="nome" placeholder="Es. Francesco">
+				    		    
 				    		  </div>
 				    		  <div class="form-group">
 				    		    <label>Cognome</label>
@@ -131,20 +134,6 @@
 							    <label>Codice Fiscale</label>
 							    <input maxlength="16" type="text" class="form-control" id="cf" placeholder="Inserisci codice fiscale">
 							  </div>
-				    		  <div class="form-group">
-			    		  		<label>Data Inizio</label>
-			    		  	    <input class="form-control" type="date" name="datainizio" value="12-10-1995" placeholder="gg/mm/aaaa" id="example-date-input">
-			    		  	  </div>
-			    		  	  <div class="form-group">
-			    		  		<label>Data Fine</label>
-			    		  	    <input class="form-control" type="date" name="datafine" value="15-10-1995" placeholder="gg/mm/aaaa" id="example-date-input">
-			    		  	  </div>
-							  <div class="form-group">
-				    		    <label>E-mail</label>
-				    		    <input type="email" class="form-control" name="email" placeholder="Es. rossi@mail.it">
-				    		  </div>
-				    		  <input type="hidden" name="action" value="noleggio">
-							  <input type="hidden" name="codiceAuto" value="0">
 				    		  <button type="submit" class="btn btn-primary">Invia</button>
 				    	</form>
 				    </div>
@@ -178,7 +167,7 @@
 				    		    <input type="email" class="form-control" name="email" placeholder="Es. rossi@mail.it">
 				    		</div>
 							<input type="hidden" name="action" value="testdrive">
-							<input type="hidden" name="codiceAuto" value="0">
+							<input type="hidden" name="codiceAuto" value="<%=auto.getCodice() %>">
 			    		  	<button type="submit" class="btn btn-primary">Invia</button>
 				    	</form>
 				    </div>
