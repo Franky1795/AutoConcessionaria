@@ -74,7 +74,7 @@
 					} %>
 				</ul>
 			</div>
-			<form>
+			<form action="servizi" method="post">
 				<div class="optional">
 					<h3 style="border-bottom: 1px solid #0275d8">Optional</h3>
 					<%
@@ -84,6 +84,7 @@
 					%>
 					<label class="custom-control custom-checkbox">
 					  <input type="checkbox" name="aggiuntivi" class="custom-control-input" value="<%=a.getCosto()%>">
+					  
 					  <span class="custom-control-indicator"></span>
 					  <span class="custom-control-description"><%=a.getNome()%></span>
 					</label>
@@ -105,8 +106,9 @@
 					  	  	<label>Codice Fiscale</label>
 					  	  	<input maxlength="16" type="text" class="form-control" id="cf" placeholder="Inserisci codice fiscale">
 					  	</div>
+					  	<input type="hidden" name="prezzoAuto" value= <%auto.getPrezzo(); %> />
 					  	<button type="submit" class="btn btn-primary">Invia</button>
-					
+					    
 				</div>
 			</form>
 			<div class="servizi">
@@ -165,7 +167,7 @@
 				    		    <input type="email" class="form-control" name="email" placeholder="Es. rossi@mail.it">
 				    		</div>
 							<input type="hidden" name="action" value="testdrive">
-							<input type="hidden" name="codiceAuto" value="0">
+							<input type="hidden" name="codiceAuto" value="<%=auto.getCodice() %>">
 			    		  	<button type="submit" class="btn btn-primary">Invia</button>
 				    	</form>
 				    </div>

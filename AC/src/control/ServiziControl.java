@@ -1,12 +1,9 @@
 package control;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,15 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Auto;
 import bean.Newsletter;
-import bean.Noleggio;
 import bean.TestDrive;
 import model.AutoModel;
-
-/**
- * Servlet implementation class ServiziControl
- */
 
 public class ServiziControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,21 +27,22 @@ public class ServiziControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
+		RequestDispatcher dispatcher=null;
 		try {
 			if(action.equalsIgnoreCase("preventivo")){
-//				Preventivo preventivo = new Preventivo();
-//				preventivo.setNome(request.getParameter("nome"));
-//				preventivo.setCognome(request.getParameter("cognome"));
-//				preventivo.setCodiceFiscale(request.getParameter("codicefiscale"));
-//				preventivo.setIndirizzo(request.getParameter("indirizzo"));
-//				preventivo.setEmail(request.getParameter("email"));
-//				preventivo.setContattoTelefonico(request.getParameter("contattotelefonico"));
-//				String nome = request.getParameter("nome");
-//				String cognome = request.getParameter("cognome");
-//				String codiceFiscale = request.getParameter("codicefiscale");
-//				String indirizzo = request.getParameter("indirizzo");
-//				String email = request.getParameter("email");
-//				String contattotelefonico = request.getParameter("contattotelefonico");
+                int prezzo= Integer.parseInt(request.getParameter("prezzoAuto"));
+				String nome = request.getParameter("nome");
+			    String cognome = request.getParameter("cognome");
+				String codiceFiscale = request.getParameter("codicefiscale");
+				String email = request.getParameter("e-mail");
+				String[] Accessori = request.getParameterValues("aggiuntivi");
+				int somma=prezzo;
+				for(int i = 0; i<Accessori.length;i++) {
+					somma+= Integer.parseInt(Accessori[i]);				            	
+				}
+				request.setAttribute("somma",somma);
+				request.setAttribute("cognome", cognome);
+				dispatcher = getServletContext().getRequestDispatcher("/Risultato.jsp");
 				
 				
 			}
@@ -93,8 +85,6 @@ public class ServiziControl extends HttpServlet {
 				test.setCodiceAuto(cod);
 				
 				model.doSave(test);
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/auto.html");
-				dispatcher.forward(request, response);
 			}
 			
 			else if (action.equalsIgnoreCase("newsletter")){
@@ -105,27 +95,8 @@ public class ServiziControl extends HttpServlet {
 				int cod = Integer.parseInt(request.getParameter("codiceAuto"));
 				news.setCodiceAuto(cod);
 				model.doSave(news);
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/auto.html");
-				dispatcher.forward(request, response);
 			}
 			
-			else if(action.equalsIgnoreCase("readall")){
-				Collection<Auto> auto = model.doRetrieveAll();
-				request.removeAttribute("auto");
-				request.setAttribute("auto", auto);
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/elenco.jsp");
-				dispatcher.forward(request, response);
-			}
-			
-			else if (action.equalsIgnoreCase("amministrazione")){
-				ArrayList<Auto> auto = model.doRetrieveAll();
-				request.removeAttribute("auto");
-				request.setAttribute("auto", auto);
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/amministrazione.jsp");
-				dispatcher.forward(request, response);
-			}
-			
-				
 			
 			
 		} catch (SQLException e) {
@@ -133,7 +104,8 @@ public class ServiziControl extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/auto.html");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
