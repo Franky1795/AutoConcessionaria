@@ -16,19 +16,13 @@
 	<script src="./javascript/bootstrap.min.js"></script>
 	<header class="header">
 		<div class="container">
-			<nav class="navbar navbar-light float-xs-left" style="padding-left: 0 !important">
+			<nav class="navbar navbar-light float-xs-left" style="padding-left: 0">
 			  <ul class="nav navbar-nav">
-			    <li class="nav-item">
-			      <a class="nav-link" href="elenco.html">elenco Auto</a>
+			  	<li class="nav-item">
+			      <a class="nav-link" href="index.html">Home page</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">contatti</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="#">chi siamo</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="#">dove siamo</a>
+			      <a class="nav-link" href="auto?action=readall">elenco Auto</a>
 			    </li>
 			    <li class="nav-item">
 			    	<a class="nav-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ricerca</a>
@@ -38,10 +32,10 @@
 			<div class="collapse float-xs-left" id="collapseExample" style="margin-top: 0.5rem">
 			  	<form class="form-inline float-xs-left">
 			      <input class="form-control" type="text" placeholder="Nome Auto">
-			      <button class="btn btn-sm btn-outline-secondary" type="submit">Cerca</button>
+			      <button class="btn btn-sm align-middle btn-outline-secondary" type="submit">Cerca</button>
 			    </form>			
 			</div>
-			<a href="login.html" class="float-xs-right btn btn-outline-primary" style="margin-top: 0.5rem">Login Amministrazione</a>
+			<a href="login.jsp" class="float-xs-right btn btn-outline-primary" style="margin-top: 0.5rem">Login Amministrazione</a>
 		</div>
 	</header>
 	<content>
@@ -84,7 +78,6 @@
 					%>
 					<label class="custom-control custom-checkbox">
 					  <input type="checkbox" name="aggiuntivi" class="custom-control-input" value="<%=a.getCosto()%>">
-					  
 					  <span class="custom-control-indicator"></span>
 					  <span class="custom-control-description"><%=a.getNome()%></span>
 					</label>
@@ -106,6 +99,11 @@
 					  	  	<label>Codice Fiscale</label>
 					  	  	<input maxlength="16" type="text" class="form-control" name="cf" placeholder="Inserisci codice fiscale">
 					  	</div>
+					  	<div class="form-group">
+					  	  	<label>E-mail</label>
+					  	  	<input  type="email" class="form-control" name="email" placeholder="Es. rossi@email.it">
+					  	</div>
+					  	<input type="hidden" name="nomeAuto" value= "<%=auto.getNome()%>" />
 					  	<input type="hidden" name="prezzoAuto" value= "<%=auto.getPrezzo() %>" />
 					  	<input type="hidden" name="action" value="preventivo">
 					  	<button type="submit" class="btn btn-primary">Invia</button>
@@ -124,30 +122,30 @@
 				    	<form style="margin-top: 10px;" action="servizi" method="POST">
 				    		<div class="form-group">
 				    		    <label style="float: left;">Nome</label>
-				    		    <input type="text" class="form-control" id="nome" placeholder="Es. Francesco">
+				    		    <input type="text" class="form-control" name="nome" placeholder="Es. Francesco">
 				    		  </div>
 				    		  <div class="form-group">
 				    		    <label>Cognome</label>
-				    		    <input type="text" class="form-control" id="cognome" placeholder="Es. Rossi">
+				    		    <input type="text" class="form-control" name="cognome" placeholder="Es. Rossi">
 				    		  </div>
 				    		  <div class="form-group">
 							    <label>Codice Fiscale</label>
-							    <input maxlength="16" type="text" class="form-control" id="cf" placeholder="Inserisci codice fiscale">
+							    <input maxlength="16" type="text" class="form-control" name="cf" placeholder="Inserisci codice fiscale">
 							  </div>
 				    		  <div class="form-group">
 			    		  		<label>Data Inizio</label>
-			    		  	    <input class="form-control" type="date" name="datainizio" value="12-10-1995" placeholder="gg/mm/aaaa" id="example-date-input">
+			    		  	    <input class="form-control" type="date" name="dataInizio" placeholder="gg/mm/aaaa" id="example-date-input">
 			    		  	  </div>
 			    		  	  <div class="form-group">
 			    		  		<label>Data Fine</label>
-			    		  	    <input class="form-control" type="date" name="datafine" value="15-10-1995" placeholder="gg/mm/aaaa" id="example-date-input">
+			    		  	    <input class="form-control" type="date" name="dataFine" placeholder="gg/mm/aaaa" id="example-date-input">
 			    		  	  </div>
 							  <div class="form-group">
 				    		    <label>E-mail</label>
 				    		    <input type="email" class="form-control" name="email" placeholder="Es. rossi@mail.it">
 				    		  </div>
 				    		  <input type="hidden" name="action" value="noleggio">
-							  <input type="hidden" name="codiceAuto" value="0">
+							  <input type="hidden" name="codiceAuto" value="<%=auto.getCodice()%>">
 				    		  <button type="submit" class="btn btn-primary">Invia</button>
 				    	</form>
 				    </div>
