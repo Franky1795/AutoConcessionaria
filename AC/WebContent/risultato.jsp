@@ -45,7 +45,7 @@
 	<content>
 		<div class="container" style="padding-top: 1rem; padding-bottom: 50px;">
 			<div class=preventivo>
-			<% String nome= (String) request.getAttribute("cognome");
+			<% String nome = (String) request.getAttribute("cognome");
 			   int somma=(int) request.getAttribute("somma");%>
 			   Gentile <%=nome %> il suo preventivo risulta essere <%=somma %> 
 			

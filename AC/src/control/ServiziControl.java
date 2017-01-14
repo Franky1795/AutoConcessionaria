@@ -40,9 +40,9 @@ public class ServiziControl extends HttpServlet {
 				for(int i = 0; i<Accessori.length;i++) {
 					somma+= Integer.parseInt(Accessori[i]);				            	
 				}
-				request.setAttribute("somma",somma);
+				request.setAttribute("somma", somma);
 				request.setAttribute("cognome", cognome);
-				dispatcher = getServletContext().getRequestDispatcher("/Risultato.jsp");
+				dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
 				
 				
 			}
@@ -104,7 +104,6 @@ public class ServiziControl extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/auto.html");
 		dispatcher.forward(request, response);
 	}
 

@@ -96,17 +96,18 @@
 					
 						<div class="form-group">
 							<label>Nome</label>
-							<input type="text" class="form-control" id="nome" placeholder="Es. Francesco">
+							<input type="text" class="form-control" name="nome" placeholder="Es. Francesco">
 						</div>
 					  	<div class="form-group">
 					  		<label>Cognome</label>
-					  	  	<input type="text" class="form-control" id="cognome" placeholder="Es. Rossi">
+					  	  	<input type="text" class="form-control" name="cognome" placeholder="Es. Rossi">
 					 	 </div>
 					 	<div class="form-group">
 					  	  	<label>Codice Fiscale</label>
-					  	  	<input maxlength="16" type="text" class="form-control" id="cf" placeholder="Inserisci codice fiscale">
+					  	  	<input maxlength="16" type="text" class="form-control" name="cf" placeholder="Inserisci codice fiscale">
 					  	</div>
-					  	<input type="hidden" name="prezzoAuto" value= <%auto.getPrezzo(); %> />
+					  	<input type="hidden" name="prezzoAuto" value= "<%=auto.getPrezzo() %>" />
+					  	<input type="hidden" name="action" value="preventivo">
 					  	<button type="submit" class="btn btn-primary">Invia</button>
 					    
 				</div>
