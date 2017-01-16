@@ -13,19 +13,13 @@
 	<script src="./javascript/bootstrap.min.js"></script>
 	<header class="header">
 		<div class="container">
-			<nav class="navbar navbar-light float-xs-left" style="padding-left: 0 !important">
+			<nav class="navbar navbar-light float-xs-left" style="padding-left: 0">
 			  <ul class="nav navbar-nav">
-			    <li class="nav-item">
-			      <a class="nav-link" href="http://localhost:8080/AC/elenco.html">elenco Auto</a>
+			  	<li class="nav-item">
+			      <a class="nav-link" href="index.html">Home page</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">contatti</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="#">chi siamo</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="#">dove siamo</a>
+			      <a class="nav-link" href="auto?action=readall">elenco Auto</a>
 			    </li>
 			    <li class="nav-item">
 			    	<a class="nav-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ricerca</a>
@@ -34,13 +28,17 @@
 			</nav>
 			<div class="collapse float-xs-left" id="collapseExample" style="margin-top: 0.5rem">
 			  	<form class="form-inline float-xs-left">
-			      <input class="form-control" placeholder="Nome Auto" type="text">
-			      <button class="btn btn-sm btn-outline-secondary" type="submit">Cerca</button>
+			      <input class="form-control" type="text" placeholder="Nome Auto">
+			      <button class="btn btn-sm align-middle btn-outline-secondary" type="submit">Cerca</button>
 			    </form>			
 			</div>
-			<a href="http://localhost:8080/AC/login.html" class="float-xs-right btn btn-outline-primary" style="margin-top: 0.5rem">Login Amministrazione</a>
-			
-	</div></header>
+			<%if(session.getAttribute("admin") != null){ %>
+			<a href="amministrazione.jsp" class="float-xs-right btn btn-outline-primary" style="margin-top: 0.5rem">Amministrazione</a>
+			<%}else{ %>
+			<a href="login.jsp" class="float-xs-right btn btn-outline-primary" style="margin-top: 0.5rem">Login Amministrazione</a>
+			<%} %>
+		</div>
+	</header>
 	<content>
 		<div class="container" style="padding-top: 1rem; padding-bottom: 50px;">
 			<%
@@ -62,10 +60,25 @@
 				else{
 			%>
 			<div class="preventivo">
-				<% String cognome = (String) request.getAttribute("cognome");
-					int somma = (int) request.getAttribute("somma"); %>
-			   		Gentile <%=cognome %> il suo preventivo risulta essere <%=somma %> 
-			
+					<div class="alert alert-info" role="alert">
+ 						<strong>Ottimo!</strong> Operazione riuscita. Ecco il suo preventivo.
+					</div>
+					<%
+					String nome = (String) request.getAttribute("nome");
+					String cognome = (String) request.getAttribute("cognome");
+					String cf = (String) request.getAttribute("cf");
+					String email = (String) request.getAttribute("email");
+					String auto = (String) request.getAttribute("auto");
+					int somma = (int) request.getAttribute("somma");
+					%>
+					Nome: <%=nome %><br>
+					Cognome: <%=cognome %><br>
+					Codice Fiscale: <%=cf %><br>
+					E-mail: <%=email %><br><br>
+					
+					Auto: <%=auto %><br><br>
+					
+					Totale: <%=somma %>&euro;<br>
 			
 			</div>
 			<%} %>

@@ -1,11 +1,7 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ page import="java.util.*, bean.Auto" %>
-	<%
-		ArrayList<Auto> auto = (ArrayList<Auto>) request.getAttribute("auto");
-	%>
-	
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" >
 	<link type="text/css" rel="stylesheet" href="./css/style.css" >
 	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
@@ -46,25 +42,22 @@
 		</div>
 	</header>
 	<content>
-		<div class="container" style="padding-top: 1rem; padding-bottom: 50px;">
-			<h2> Elenco Auto</h2>
-			<div>
-				
-				<%
-					for(Auto auto1 : auto){ %>
-					<a href="auto?action=read&id=<%=auto1.getCodice() %>" class="riga">
-					<div>
-						<img src="./images/<%=auto1.getImmagine()%>">
-						<p class="nomeAuto"><%=auto1.getNome()%></p>
-						<p style="float: right;"> <%=auto1.getPrezzo()%> &euro;</p>
-					</div>
-					</a>
-					<% 
-						}
-					%>
-			
-			</div>			
+		<div class="container-fluid gradient">
+			<div class="container" style="padding-top: 50px">
+				<center>
+					<img src="./images/acb-logo.png">
+					<h1>AUTO CONCESSIONARIA BIANCO ANTONIO</h1><br>
+					<h3>Direttamente da questo portale &egrave; possibile acquistare un'auto! <br>
+						Puoi accedere anche a servizi come richiedere un preventivo di un'auto oppure noleggiarla e tanto altro in pochi click.</h3>
+				</center>
+			</div>
 		</div>
 	</content>
+	<script type="text/javascript">
+		$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus()
+		})
+
+	</script>
 </body>
 </html>

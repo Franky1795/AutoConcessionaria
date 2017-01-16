@@ -6,12 +6,16 @@
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" >
 	<link type="text/css" rel="stylesheet" href="./css/style.css" >
 	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<link href="./css/jquery-ui.css" rel="stylesheet">
+	<link href="./css/jquery-ui.structure.css" rel="stylesheet">
+	<link href="./css/jquery-ui.theme.css" rel="stylesheet">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Auto Concessionaria</title>
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="./javascript/jquery-ui.js"></script>
 	<script src="./javascript/bootstrap.js"></script>
 	<script src="./javascript/bootstrap.min.js"></script>
 	<header class="header">
@@ -35,7 +39,11 @@
 			      <button class="btn btn-sm align-middle btn-outline-secondary" type="submit">Cerca</button>
 			    </form>			
 			</div>
+			<%if(session.getAttribute("admin") != null){ %>
+			<a href="amministrazione.jsp" class="float-xs-right btn btn-outline-primary" style="margin-top: 0.5rem">Amministrazione</a>
+			<%}else{ %>
 			<a href="login.jsp" class="float-xs-right btn btn-outline-primary" style="margin-top: 0.5rem">Login Amministrazione</a>
+			<%} %>
 		</div>
 	</header>
 	<content>
@@ -45,7 +53,7 @@
 			%>
 			<div class="auto">
 			
-				<img src="./images/car.jpg" class="fotoAuto">
+				<img src="./images/<%=auto.getImmagine() %>" class="fotoAuto">
 				<div class="testata">
 					<h2 class="float-xs-left"><%=auto.getNome() %></h2>
 					<button type="button" class="float-xs-right btn btn-success align-middle pulsanteAcquista">Acquista</button>
@@ -134,11 +142,11 @@
 							  </div>
 				    		  <div class="form-group">
 			    		  		<label>Data Inizio</label>
-			    		  	    <input class="form-control" type="date" name="dataInizio" placeholder="gg/mm/aaaa" id="example-date-input">
+			    		  	    <input class="form-control" type="date" name="dataInizio" placeholder="gg/mm/aaaa" id="from">
 			    		  	  </div>
 			    		  	  <div class="form-group">
 			    		  		<label>Data Fine</label>
-			    		  	    <input class="form-control" type="date" name="dataFine" placeholder="gg/mm/aaaa" id="example-date-input">
+			    		  	    <input class="form-control" type="date" name="dataFine" placeholder="gg/mm/aaaa" id="to">
 			    		  	  </div>
 							  <div class="form-group">
 				    		    <label>E-mail</label>
@@ -168,7 +176,7 @@
 			    		  	</div>
 			    		  	<div class="form-group">
 			    		  		<label>Data</label>
-			    		  	    <input class="form-control" type="date" name="data" value="12-10-1995" placeholder="gg/mm/aaaa" id="example-date-input">
+			    		  	    <input class="form-control" type="date" name="data" placeholder="gg/mm/aaaa" id="datepicker">
 			    		  	</div>
 			    		  	<div class="form-group">
 							   <label>Codice Fiscale</label>
@@ -204,7 +212,7 @@
 				    		    <input type="email" class="form-control" name="email" placeholder="Es. rossi@mail.it">
 				    		</div>
 				    		<input type="hidden" name="action" value="newsletter">
-							<input type="hidden" name="codiceAuto" value="0">
+							<input type="hidden" name="codiceAuto" value="<%=auto.getCodice()%>">
 				    		<button type="submit" class="btn btn-primary">Iscriviti</button>
 				    	</form>
 				    </div>
@@ -214,5 +222,47 @@
 			</div>
 		</div>
 	</content>
+	<script type="text/javascript">
+		
+		$( function() {
+			$( "#datepicker" ).datepicker({
+				minDate: 0,
+				maxDate: +30,
+				dateFormat: "dd/mm/yy"
+			});
+		} );
+
+		$( function() {
+			var dateFormat = "dd/mm/yy",
+				from = $( "#from" )
+					.datepicker({
+						minDate: 0,
+						maxDate: +30,
+						dateFormat: "dd/mm/yy"
+					})
+					.on( "change", function() {
+						to.datepicker( "option", "minDate", getDate( this ) );
+						to.datepicker( "option", "maxDate", getDate( this ) +60 );
+					}),
+				to = $( "#to" ).datepicker({
+					minDate: 0,
+					maxDate: +30,
+					dateFormat: "dd/mm/yy"
+				})
+				.on( "change", function() {
+					from.datepicker( "option", "maxDate", getDate( this ) );
+				});
+
+			function getDate( element ) {
+				var date;
+				try {
+					date = $.datepicker.parseDate( dateFormat, element.value );
+				} catch( error ) {
+					date = null;
+				}
+				return date;
+			}
+		});
+	</script>
 </body>
 </html>

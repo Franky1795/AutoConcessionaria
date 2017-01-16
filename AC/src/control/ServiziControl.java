@@ -36,18 +36,23 @@ public class ServiziControl extends HttpServlet {
 			if(action.equalsIgnoreCase("preventivo")){
                 int prezzo= Integer.parseInt(request.getParameter("prezzoAuto"));
 				String nome = request.getParameter("nome");
+				request.setAttribute("nome", nome);
 			    String cognome = request.getParameter("cognome");
-				String codiceFiscale = request.getParameter("codicefiscale");
-				String email = request.getParameter("e-mail");
-				String[] Accessori = request.getParameterValues("aggiuntivi");
+				request.setAttribute("cognome", cognome);
+				String codiceFiscale = request.getParameter("cf");
+				request.setAttribute("cf", codiceFiscale);
+				String email = request.getParameter("email");
+				request.setAttribute("email", email);
+				String auto = request.getParameter("nomeAuto");
+				request.setAttribute("auto", auto);
 				int somma=prezzo;
-				for(int i = 0; i<Accessori.length;i++) {
-					somma+= Integer.parseInt(Accessori[i]);				            	
+				if(request.getParameterValues("aggiuntivi") != null){
+					String[] Accessori = request.getParameterValues("aggiuntivi");
+					for(int i = 0; i<Accessori.length;i++) {
+						somma+= Integer.parseInt(Accessori[i]);				            	
+					}
 				}
 				request.setAttribute("somma", somma);
-				request.setAttribute("cognome", cognome);
-				request.setAttribute("ris", true);
-				
 				dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
 				
 				
@@ -116,23 +121,31 @@ public class ServiziControl extends HttpServlet {
 				request.setAttribute("ris", true);
 				dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
 			}
-			
+			else if(action.equalsIgnoreCase("read")){
+				int code = Integer.parseInt(request.getParameter("id"));
+				Auto auto = model.doRetrieveByKey(code);
+				if(auto == null)
+				{
+					dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
+					request.setAttribute("ris", false);
+				}
+				else
+				{	
+					request.setAttribute("auto", auto);
+					dispatcher = getServletContext().getRequestDispatcher("/auto.jsp");
+				}
+			}
 			else if(action.equalsIgnoreCase("readall")){
-				Collection<Auto> auto = model.doRetrieveAll();
+				ArrayList<Auto> auto = model.doRetrieveAll();
 				request.removeAttribute("auto");
 				request.setAttribute("auto", auto);
 				dispatcher = getServletContext().getRequestDispatcher("/elenco.jsp");
 			}
 			
-			else if (action.equalsIgnoreCase("amministrazione")){
-				ArrayList<Auto> auto = model.doRetrieveAll();
-				request.removeAttribute("auto");
-				request.setAttribute("auto", auto);
-				dispatcher = getServletContext().getRequestDispatcher("/amministrazione.jsp");
-			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			request.setAttribute("ris", false);
+			dispatcher = getServletContext().getRequestDispatcher("/risultato.jsp");
 		}
 		
 		dispatcher.forward(request, response);
