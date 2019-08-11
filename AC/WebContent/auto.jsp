@@ -78,7 +78,7 @@
 			</div>
 			<form action="servizi" method="post">
 				<div class="optional">
-					<h3 style="border-bottom: 1px solid #0275d8">Optional</h3>
+					<h3 style="border-bottom: 1px solid #0275d7">Optional</h3>
 					<%
 						for(Accessorio a : acc){
 						
